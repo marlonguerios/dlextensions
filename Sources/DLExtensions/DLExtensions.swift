@@ -3,27 +3,27 @@ import SwiftUI
 import UIKit
 
 extension Color {
-    static let sunrise = Color(red: 255/255, green: 207/255, blue: 15/255)
-    static let sunset = Color(red: 209/255, green: 114/255, blue: 6/255)
-    static let lightBorderColor = Color(red: 230/255, green: 230/255, blue: 230/255)
-    static let superLightGray = Color(red: 245/255, green: 245/255, blue: 245/255)
-    static let darkBorderColor = Color(red: 50/255, green: 50/255, blue: 50/255)
-    static let tagBorderColor = Color(red: 191/255, green: 3/255, blue: 3/255)
-    static let tagBgColor = Color(red: 247/255, green: 230/255, blue: 230/255)
-    static let tagFgColor = Color(red: 142/255, green: 2/255, blue: 2/255)
+    public static let sunrise = Color(red: 255/255, green: 207/255, blue: 15/255)
+    public static let sunset = Color(red: 209/255, green: 114/255, blue: 6/255)
+    public static let lightBorderColor = Color(red: 230/255, green: 230/255, blue: 230/255)
+    public static let superLightGray = Color(red: 245/255, green: 245/255, blue: 245/255)
+    public static let darkBorderColor = Color(red: 50/255, green: 50/255, blue: 50/255)
+    public static let tagBorderColor = Color(red: 191/255, green: 3/255, blue: 3/255)
+    public static let tagBgColor = Color(red: 247/255, green: 230/255, blue: 230/255)
+    public static let tagFgColor = Color(red: 142/255, green: 2/255, blue: 2/255)
     #if os(iOS)
-        static let buttonFgColor = Color.init(UIColor.systemRed)
+    public static let buttonFgColor = Color.init(UIColor.systemRed)
     #endif
-    static let nameFgColorLight = Color.black
-    static let nameFgColorDark = Color.white
-    static let doneGreen = UIColor(red: 35/255, green: 120/255, blue: 53/255, alpha: 1)
-    static let contactName = Color(red: 46/255, green: 80/255, blue: 143/255)
-    static let offWhite = Color(red: 240 / 255, green: 240 / 255, blue: 240 / 255)
-    static let nowEvent = Color(red: 255 / 255, green: 234 / 255, blue: 234 / 255)
+    public static let nameFgColorLight = Color.black
+    public static let nameFgColorDark = Color.white
+    public static let doneGreen = UIColor(red: 35/255, green: 120/255, blue: 53/255, alpha: 1)
+    public static let contactName = Color(red: 46/255, green: 80/255, blue: 143/255)
+    public static let offWhite = Color(red: 240 / 255, green: 240 / 255, blue: 240 / 255)
+    public static let nowEvent = Color(red: 255 / 255, green: 234 / 255, blue: 234 / 255)
     
-    static let lightGray = Color("lightGray")
+    public static let lightGray = Color("lightGray")
     
-    static func getNameColor(colorScheme: ColorScheme) -> Color {
+    public static func getNameColor(colorScheme: ColorScheme) -> Color {
         if colorScheme == ColorScheme.light {
             return Color.nameFgColorLight
         } else {
@@ -31,7 +31,7 @@ extension Color {
         }
     }
     
-    static func getListBorderColor(colorScheme: ColorScheme) -> Color {
+    public static func getListBorderColor(colorScheme: ColorScheme) -> Color {
         if colorScheme == ColorScheme.light {
             return Color.lightBorderColor
         } else {
@@ -39,7 +39,7 @@ extension Color {
         }
     }
     
-    static func getStartGradientColor(colorScheme: ColorScheme) -> Color {
+    public static func getStartGradientColor(colorScheme: ColorScheme) -> Color {
         if colorScheme == ColorScheme.light {
             return Color.lightBorderColor
         } else {
@@ -47,7 +47,7 @@ extension Color {
         }
     }
     
-    static func getEndGradientColor(colorScheme: ColorScheme) -> Color {
+    public static func getEndGradientColor(colorScheme: ColorScheme) -> Color {
         if colorScheme == ColorScheme.light {
             return Color.white
         } else {
@@ -55,7 +55,7 @@ extension Color {
         }
     }
     
-    static func getBorderColor(colorScheme: ColorScheme) -> Color {
+    public static func getBorderColor(colorScheme: ColorScheme) -> Color {
         if colorScheme == ColorScheme.light {
             return Color.lightBorderColor
         } else {
@@ -124,48 +124,48 @@ extension Date {
         return Calendar.current.date(from: components)!
     }
     
-    func getDay() -> Int {
+    public func getDay() -> Int {
         return Calendar.current.component(.day, from: self)
     }
 
-    func getYesterdayDay() -> Int {
+    public func getYesterdayDay() -> Int {
         var comp = DateComponents()
         comp.day = -1
         return Calendar.current.component(.day, from: Calendar.current.date(byAdding: comp, to: self)!)
     }
 
-    func getTomorrowDay() -> Int {
+    public func getTomorrowDay() -> Int {
         var comp = DateComponents()
         comp.day = 1
         return Calendar.current.component(.day, from: Calendar.current.date(byAdding: comp, to: self)!)
     }
     
-    func getHour() -> Int {
+    public func getHour() -> Int {
         return Calendar.current.component(.hour, from: self)
     }
     
-    func getMinute() -> Int {
+    public func getMinute() -> Int {
         return Calendar.current.component(.minute, from: self)
     }
     
-    func getDecimalTime() -> CGFloat {
+    public func getDecimalTime() -> CGFloat {
         return CGFloat(getHour() + (getMinute()/60))
     }
     
-    func dateWithTime(hour: Int, minute: Int) -> Date {
+    public func dateWithTime(hour: Int, minute: Int) -> Date {
         return Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: self)!
     }
 }
 
 extension String {
-    var localized: String {
+    public var localized: String {
         return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
     }
 }
 
 extension UIImage {
 
-    func colorized(color : UIColor) -> UIImage {
+    public func colorized(color : UIColor) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height);
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0);
         
@@ -184,7 +184,7 @@ extension UIImage {
 }
 
 extension View {
-    func border(width: CGFloat, edge: Edge, color: Color) -> some View {
+    public func border(width: CGFloat, edge: Edge, color: Color) -> some View {
         ZStack {
             self
             EdgeBorder(width: width, edge: edge)
