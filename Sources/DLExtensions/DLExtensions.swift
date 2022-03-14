@@ -4,13 +4,13 @@ import UIKit
 import EventKit
 
 extension Font {
-    init(uiFont: UIFont) {
+    public init(uiFont: UIFont) {
         self = Font(uiFont as CTFont)
     }
 }
 
 extension EKEvent {
-    func isMorning() -> Bool {
+    public func isMorning() -> Bool {
         if self.startDate != nil {
             let minDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self.startDate)!
             let maxDate = Calendar.current.date(bySettingHour: 11, minute: 59, second: 59, of: self.startDate)!
@@ -20,7 +20,7 @@ extension EKEvent {
         }
     }
     
-    func isAfternoon() -> Bool {
+    public func isAfternoon() -> Bool {
         if self.startDate != nil {
             let minDate = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self.startDate)!
             let maxDate = Calendar.current.date(bySettingHour: 17, minute: 59, second: 59, of: self.startDate)!
@@ -30,7 +30,7 @@ extension EKEvent {
         }
     }
     
-    func isEvening() -> Bool {
+    public func isEvening() -> Bool {
         if self.startDate != nil {
             let minDate = Calendar.current.date(bySettingHour: 18, minute: 0, second: 0, of: self.startDate)!
             let maxDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: self.startDate)!
