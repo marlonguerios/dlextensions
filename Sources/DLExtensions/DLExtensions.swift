@@ -1,6 +1,46 @@
 import Foundation
 import SwiftUI
 import UIKit
+import EventKit
+
+extension Font {
+    init(uiFont: UIFont) {
+        self = Font(uiFont as CTFont)
+    }
+}
+
+extension EKEvent {
+    func isMorning() -> Bool {
+        if self.startDate != nil {
+            let minDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self.startDate)!
+            let maxDate = Calendar.current.date(bySettingHour: 11, minute: 59, second: 59, of: self.startDate)!
+            return !self.isAllDay && self.startDate >= minDate && self.startDate <= maxDate
+        } else {
+            return false
+        }
+    }
+    
+    func isAfternoon() -> Bool {
+        if self.startDate != nil {
+            let minDate = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self.startDate)!
+            let maxDate = Calendar.current.date(bySettingHour: 17, minute: 59, second: 59, of: self.startDate)!
+            return !self.isAllDay && self.startDate >= minDate && self.startDate <= maxDate
+        } else {
+            return false
+        }
+    }
+    
+    func isEvening() -> Bool {
+        if self.startDate != nil {
+            let minDate = Calendar.current.date(bySettingHour: 18, minute: 0, second: 0, of: self.startDate)!
+            let maxDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: self.startDate)!
+            return !self.isAllDay && self.startDate >= minDate && self.startDate <= maxDate
+        } else {
+            return false
+        }
+    }
+    
+}
 
 extension Color {
     public static let sunrise = Color(red: 255/255, green: 207/255, blue: 15/255)
@@ -11,9 +51,9 @@ extension Color {
     public static let tagBorderColor = Color(red: 191/255, green: 3/255, blue: 3/255)
     public static let tagBgColor = Color(red: 247/255, green: 230/255, blue: 230/255)
     public static let tagFgColor = Color(red: 142/255, green: 2/255, blue: 2/255)
-    #if os(iOS)
+#if os(iOS)
     public static let buttonFgColor = Color.init(UIColor.systemRed)
-    #endif
+#endif
     public static let nameFgColorLight = Color.black
     public static let nameFgColorDark = Color.white
     public static let doneGreen = UIColor(red: 35/255, green: 120/255, blue: 53/255, alpha: 1)
@@ -106,7 +146,7 @@ extension Date {
         let components = Calendar.current.dateComponents([.year, .month], from: startOfDay)
         return Calendar.current.date(from: components)!
     }
-
+    
     public var endOfMonth: Date {
         var components = DateComponents()
         components.month = 1
@@ -127,13 +167,13 @@ extension Date {
     public func getDay() -> Int {
         return Calendar.current.component(.day, from: self)
     }
-
+    
     public func getYesterdayDay() -> Int {
         var comp = DateComponents()
         comp.day = -1
         return Calendar.current.component(.day, from: Calendar.current.date(byAdding: comp, to: self)!)
     }
-
+    
     public func getTomorrowDay() -> Int {
         var comp = DateComponents()
         comp.day = 1
@@ -164,7 +204,7 @@ extension String {
 }
 
 extension UIImage {
-
+    
     public func colorized(color : UIColor) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height);
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0);
