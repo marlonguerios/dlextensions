@@ -1,3 +1,3 @@
 # DLExtensions
 
-A description of this package.
+A few useful extensions for SwiftUI. Feel free to contribute!
